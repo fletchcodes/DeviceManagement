@@ -1,0 +1,59 @@
+//{
+//  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+//  "contentVersion": "1.0.0.0",
+//  "parameters": {
+    
+//    "location": {
+//      "type": "string",
+//      "defaultValue": "[resourceGroup().location]",
+//      "metadata": {
+//        "description": "Specifies the Azure location where the key vault should be created."
+//      }
+//    },
+//    "variables": {},
+//    "resources": [
+//      {
+//        "type": "Microsoft.KeyVault/vaults",
+//        "name": "devicemanagement-secrets",
+//        "apiVersion": "2018-02-14",
+//        "location": "[parameters('location')]",
+//        "properties": {
+//          "enabledForDeployment": "[parameters('enabledForDeployment')]",
+//          "enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]",
+//          "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+//          "tenantId": "[parameters('tenantId')]",
+//          "accessPolicies": [
+//            {
+//              "objectId": "[parameters('objectId')]",
+//              "tenantId": "[parameters('tenantId')]",
+//              "permissions": {
+//                "keys": "[parameters('keysPermissions')]",
+//                "secrets": "[parameters('secretsPermissions')]"
+//              }
+//            }
+//          ],
+//          "sku": {
+//            "name": "[parameters('skuName')]",
+//            "family": "A"
+//          },
+//          "networkAcls": {
+//            "defaultAction": "Allow",
+//            "bypass": "AzureServices"
+//          }
+//        }
+//      },
+//      {
+//        "type": "Microsoft.KeyVault/vaults/secrets",
+//        "name": "[concat(parameters('keyVaultName'), '/', parameters('secretName'))]",
+//        "apiVersion": "2018-02-14",
+//        "location": "[parameters('location')]",
+//        "dependsOn": [
+//          "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+//        ],
+//        "properties": {
+//          "value": "[parameters('secretValue')]"
+//        }
+//      }
+//    ],
+//    "outputs": {}
+//  }

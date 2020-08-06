@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>DeviceManagement.Services.Access.DeviceAccess.Interface</AssemblyName>
+    <RootNamespace>DeviceManagement.Services.Access.DeviceAccess.Interface</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="4.1.417" />
+  </ItemGroup>
+
+</Project>
